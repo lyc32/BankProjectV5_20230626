@@ -2,8 +2,8 @@ import java.util.Scanner;
 
 public class Address
 {
-    public int doorNo;
-    public int streetNo;
+    public String doorNo;
+    public String streetNo;
     public String direction;
     public String streetName;
     public String cityName;
@@ -12,8 +12,8 @@ public class Address
 
     public Address()
     {
-        this.doorNo = -1;
-        this.streetNo = -1;
+        this.doorNo = "";
+        this.streetNo = "";
         this.direction = "";
         this.streetName = "";
         this.stateName = "";
@@ -25,13 +25,13 @@ public class Address
     {
         Scanner scanner = new Scanner(System.in);
         System.out.println("please input your Street No:");
-        streetNo = scanner.nextInt();
+        streetNo = scanner.next();
         System.out.println("please input the Street direction: W E N S");
         direction = scanner.next();
         System.out.println("please input the Street Name:");
         streetName = scanner.next();
         System.out.println("please input your apt No:");
-        doorNo = scanner.nextInt();
+        doorNo = scanner.next();
         System.out.println("please input your city name:");
         cityName = scanner.next();
         System.out.println("please input your state:");
@@ -43,7 +43,7 @@ public class Address
     public String getAddress()
     {
         String result = "";
-        if(streetNo >= 0)
+        if(!streetNo.equals(""))
         {
             result = "  " + streetNo + " ";
         }
@@ -58,7 +58,7 @@ public class Address
             result = result + streetName + "St\n  ";
         }
 
-        if(doorNo >= 0)
+        if(!doorNo.equals(""))
         {
             result = result + "Unit "+ doorNo + "\n  ";
         }

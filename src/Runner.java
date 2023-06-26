@@ -70,6 +70,7 @@ public class Runner
                     else
                     {
                         System.out.println("your ID and password not match\nDo you want to try again.");
+                        tmpAccount = null;
                         String tryAgain = scanner.next();
                         if(tryAgain.equals("No"))
                         {
@@ -94,6 +95,7 @@ public class Runner
                     else
                     {
                         System.out.println("your ID and password not match\nDo you want to try again.");
+                        tmpAccount = null;
                         String tryAgain = scanner.next();
                         if(tryAgain.equals("No"))
                         {
@@ -156,6 +158,7 @@ public class Runner
                     else
                     {
                         System.out.println("your ID and password not match\nDo you want to try again.");
+                        tmpAccount = null;
                         String tryAgain = scanner.next();
                         if(tryAgain.equals("No"))
                         {
@@ -168,11 +171,13 @@ public class Runner
             System.out.println("Do you want to logout or continue? \nEnter Yes to logout");
             if(("Yes").equals(scanner.next()))
             {
-                id = "";
-                password = "";
                 tmpAccount = null;
                 type = -1;
-                break;
+                System.out.println("Do you want to Exit? \nEnter Yes to Exit.");
+                if(scanner.next().equals("Yes"))
+                {
+                    break;
+                }
             }
         }
 
