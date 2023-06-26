@@ -58,6 +58,47 @@ public class AccountManger extends Account implements UserOperation
     }
 
     @Override
+    public void deleteUser(String id, DataBase dataBase)
+    {
+        boolean deleteSuccessful = false;
+        for(int i = 0; i < DataBase.perAccountList.size(); i++)
+        {
+            if(DataBase.perAccountList.get(i).getUserId().equals(id))
+            {
+                dataBase.perAccountList.remove(i);
+                deleteSuccessful = true;
+                break;
+            }
+        }
+        if(deleteSuccessful == true)
+        {
+            System.out.println("success delete User: " + id);
+        }
+        else
+        {
+            System.out.println("can not find user: " + id);
+        }
+    }
+
+    public void searchUser(String id, DataBase dataBase)
+    {
+        boolean findUser = false;
+        for(int i = 0; i < DataBase.perAccountList.size(); i++)
+        {
+            if(DataBase.perAccountList.get(i).getUserId().equals(id))
+            {
+                dataBase.perAccountList.get(i).print();
+                findUser = true;
+                break;
+            }
+        }
+        if(findUser == false)
+        {
+            System.out.println("can not find user: " + id);
+        }
+    }
+
+    @Override
     public void listUsers(DataBase dataBase)
     {
         for(int i = 0; i < DataBase.perAccountList.size(); i++)

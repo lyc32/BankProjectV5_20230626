@@ -6,34 +6,44 @@ public class Runner
     {
         System.out.println("Welcome to AB bank.");
         Scanner scanner = new Scanner(System.in);
+        Account tmpAccount = null;
+        String id = "";
+        String password = "";
+        int type = -1;
 
         while (true)
         {
             // account type
-            int type;
+
             for(;true;)
             {
-                System.out.println("Please select your Account Type:\n 1 for personal\n 2.for business\n 3.for Manager");
-                type = scanner.nextInt();
-                if(type == 1 || type == 2 || type == 3)
+                if(tmpAccount == null)
                 {
-                    break;
+                    for(;true;)
+                    {
+                        System.out.println("Please select your Account Type:\n 1 for personal\n 2.for business\n 3.for Manager");
+                        type = scanner.nextInt();
+                        if(type == 1 || type == 2 || type == 3)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            System.out.println("You enter a wrong number, please try again\n");
+                        }
+                    }
+                    // login
+                    System.out.println("Please enter your Account Id:");
+                    id = scanner.next();
+                    System.out.println("Please enter your password:");
+                    password = scanner.next();
                 }
                 else
                 {
-                    System.out.println("You enter a wrong number, please try again\n");
+                    id = tmpAccount.getUserId();
+                    password = tmpAccount.getUserPass();
                 }
-            }
 
-            Account tmpAccount = null;
-
-            for(;true;)
-            {
-                // login
-                System.out.println("Please enter your Account Id:");
-                String id = scanner.next();
-                System.out.println("Please enter your password:");
-                String password = scanner.next();
                 if(type == 1)
                 {
                     tmpAccount = new AccountCustomerPersonal(id,password);
@@ -89,16 +99,28 @@ public class Runner
                     if( tmpAccount != null)
                     {
                         tmpAccount.print();
-                        System.out.println("What you want to do?\n 1.add new user\n 2.list all users");
+                        System.out.println("What you want to do?\n 1.add new user\n 2.delete user\n 3.search user\n 4.list all users");
                         int choose = scanner.nextInt();
 
                         if(choose == 1)
                         {
                             ((AccountManger) tmpAccount).addNewUser(dataBase);
                         }
-                        else
+                        else if(choose == 3)
+                        {
+                            System.out.println("please input User ID:");
+                            String userId = scanner.next();
+                            ((AccountManger) tmpAccount).searchUser(userId, dataBase);
+                        }
+                        else if(choose == 4)
                         {
                             ((AccountManger) tmpAccount).listUsers(dataBase);
+                        }
+                        else
+                        {
+                            System.out.println("please input User ID:");
+                            String deleteId = scanner.next();
+                            ((AccountManger) tmpAccount).deleteUser(deleteId,dataBase);
                         }
                         break;
                     }
@@ -114,9 +136,13 @@ public class Runner
                 }
             }
 
-            System.out.println("Do you want to logout or re-login? \nEnter Yes to logout");
+            System.out.println("Do you want to logout or continue? \nEnter Yes to logout");
             if(("Yes").equals(scanner.next()))
             {
+                id = "";
+                password = "";
+                tmpAccount = null;
+                type = -1;
                 break;
             }
         }
