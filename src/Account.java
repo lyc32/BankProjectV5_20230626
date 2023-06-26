@@ -49,19 +49,6 @@ public abstract class Account
         return this.userName;
     }
 
-    /*public Account login(Account[] accountList)
-    {
-        System.out.println("list:" + accountList.length);
-        for(int i = 0; i < accountList.length; i++)
-        {
-            if(accountList[i].getUserId().equals(this.userId) && accountList[i].getUserPass().equals(this.userPass))
-            {
-                return accountList[i];
-            }
-        }
-        return null;
-    }*/
-
     public Account login(List<Account> accountList)
     {
         for(int i = 0; i < accountList.size(); i++)
@@ -74,7 +61,6 @@ public abstract class Account
         }
         return null;
     }
-
 
     abstract void print();
 }

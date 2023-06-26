@@ -2,13 +2,23 @@ import java.util.Scanner;
 
 public class Address
 {
-    public String doorNo;
-    public String streetNo;
-    public String direction;
-    public String streetName;
-    public String cityName;
-    public String stateName;
-    public String zipCode;
+    private String doorNo;
+    private String streetNo;
+    private String direction;
+    private String streetName;
+    private String cityName;
+    private String stateName;
+    private String zipCode;
+
+    public Address(String doorNo, String streetNo, String direction, String streetName, String cityName, String stateName, String zipCode) {
+        this.doorNo = doorNo;
+        this.streetNo = streetNo;
+        this.direction = direction;
+        this.streetName = streetName;
+        this.cityName = cityName;
+        this.stateName = stateName;
+        this.zipCode = zipCode;
+    }
 
     public Address()
     {
