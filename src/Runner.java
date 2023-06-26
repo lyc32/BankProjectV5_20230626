@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Runner
@@ -22,14 +23,22 @@ public class Runner
                     for(;true;)
                     {
                         System.out.println("Please select your Account Type:\n 1 for personal\n 2.for business\n 3.for Manager");
-                        type = scanner.nextInt();
-                        if(type == 1 || type == 2 || type == 3)
+                        try
                         {
-                            break;
+                            type = scanner.nextInt();
+                            if(type == 1 || type == 2 || type == 3)
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                System.out.println("You enter a wrong number, please try again\n");
+                            }
                         }
-                        else
+                        catch (InputMismatchException e)
                         {
-                            System.out.println("You enter a wrong number, please try again\n");
+                            System.out.println("Please input a number, try again\n");
+                            scanner.next();
                         }
                     }
                     // login
@@ -51,7 +60,7 @@ public class Runner
                     if(tmpAccount != null)
                     {
                         tmpAccount.print();
-                        System.out.println("Do you want to check your Balance?");
+                        System.out.println("Do you want to check your Balance?\nEnter 'Yes' to check");
                         if(("Yes").equals(scanner.next()))
                         {
                             System.out.println("your account balance is: " + ((AccountCustomerPersonal) tmpAccount).getBalance());
@@ -75,7 +84,7 @@ public class Runner
                     if(tmpAccount != null)
                     {
                         tmpAccount.print();
-                        System.out.println("Do you want to check your Balance?");
+                        System.out.println("Do you want to check your Balance?\nEnter 'Yes' to check");
                         if(("Yes").equals(scanner.next()))
                         {
                             System.out.println("your account balance is: " + ((AccountCustomerBusiness) tmpAccount).getBalance());
@@ -99,8 +108,28 @@ public class Runner
                     if( tmpAccount != null)
                     {
                         tmpAccount.print();
-                        System.out.println("What you want to do?\n 1.add new user\n 2.delete user\n 3.search user\n 4.list all users");
-                        int choose = scanner.nextInt();
+                        int choose = -1;
+                        for(;true;)
+                        {
+                            System.out.println("What you want to do?\n 1.add new user\n 2.delete user\n 3.search user\n 4.list all users");
+                            try
+                            {
+                                choose= scanner.nextInt();
+                                if(choose == 1 || choose == 2 || choose == 3 || choose == 4)
+                                {
+                                    break;
+                                }
+                                else
+                                {
+                                    System.out.println("You enter a wrong number, please try again\n");
+                                }
+                            }
+                            catch (InputMismatchException e)
+                            {
+                                System.out.println("Please input a number, try again\n");
+                                scanner.next();
+                            }
+                        }
 
                         if(choose == 1)
                         {
